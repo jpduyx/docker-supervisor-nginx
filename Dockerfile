@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y nginx supervisor \
  && rm -rf /var/lib/{apt,dpkg,cache,log}/ 
 
 COPY all.conf /etc/supervisor/conf.d/
+COPY nginx.conf /etc/nginx/
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
@@ -18,3 +19,6 @@ VOLUME ["/var/cache/nginx"]
 EXPOSE 80 443
 
 CMD ["/usr/bin/supervisord", "-n"]
+
+
+# some inspiration from: https://github.com/nginxinc/openshift-nginx/blob/master/Dockerfile
