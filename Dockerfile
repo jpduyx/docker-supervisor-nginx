@@ -5,5 +5,5 @@ RUN apt-get update && apt-get install -y nginx supervisor
 
 COPY all.conf /etc/supervisor/conf.d/
 
-EXPOSE 22 80
+EXPOSE 80
 CMD ["/usr/bin/supervisord", "-n"]
